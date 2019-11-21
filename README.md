@@ -1,8 +1,8 @@
 ## usersテーブル
+## user_idを削除完了
 |Column|Type|Options|
 |------|----|-------|
-|user_id|integer|null: false, foreign_key: true|
-|password|string|null: false|
+|password|string|null: false| 
 |e-mail|string|null: false|
 |nickname|string|null: false|
 ### アソシエーション
@@ -10,21 +10,26 @@
 - has_many :posts
 
 ## postsテーブル
+## "余分な制約を削除"
+## "groupsに接続"
+## "textの型を修正。integer→string"
 |Column|Type|Options|
 |------|----|-------|
-|text|integer|null: false, foreign_key: true|
-|image|string|null: false, foreign_key: true|
+|text|string|null: false|
+|image|string|null: false|
 |user_id|integer|null: false, foreign_key: true|
 ### アソシエーション
-- has_many :users
+- belongs_to :user
+- has_many :groups
 
 ## groupsテーブル
+## "group_name → nameへ変更。型を変更。"
 |Column|Type|Options|
 |------|----|-------|
-|group_name|integer|null: false|
+|name|string|null: false|
 ### アソシエーション
 - has_many :users, through:  :groups_users
-- has_many :posts, through:  :groups_users
+- has_many :posts
 
 ## groups_usersテーブル
 |Column|Type|Options|
