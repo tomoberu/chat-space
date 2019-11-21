@@ -34,3 +34,6 @@
 ### Association
 - belongs_to :group
 - belongs_to :user
+
+### users_postsテーブルの削除しました。
+### 余分な外部キー制約を削除しました。
