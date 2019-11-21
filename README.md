@@ -19,8 +19,8 @@
 ## "groups_idを作成"
 |Column|Type|Options|
 |------|----|-------|
-|text|string|null: false|
-|image|string|null: false|
+|text|string ||
+|image|string ||
 |user_id|integer|null: false, foreign_key: true|
 |groups_id|integer|null: false, foreign_key: true|
 ### アソシエーション
