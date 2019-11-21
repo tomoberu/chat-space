@@ -2,12 +2,12 @@
 |Column|Type|Options|
 |------|----|-------|
 |user_id|integer|null: false, foreign_key: true|
-|password|string|null: false, foreign_key: true|
-|e-mail|string|null: false, foreign_key: true|
-|nickname|string|null: false, foreign_key: true|
+|password|string|null: false|
+|e-mail|string|null: false|
+|nickname|string|null: false|
 ### アソシエーション
 - has_many :groups, through:  :groups_users
-- has_many :posts, through:  :users_posts
+- has_many :posts
 
 ## postsテーブル
 |Column|Type|Options|
@@ -16,12 +16,12 @@
 |image|string|null: false, foreign_key: true|
 |user_id|integer|null: false, foreign_key: true|
 ### アソシエーション
-- has_many :users,  through:  :users_posts
+- has_many :users
 
 ## groupsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|group_name|integer|null: false, foreign_key: true|
+|group_name|integer|null: false|
 ### アソシエーション
 - has_many :users, through:  :groups_users
 - has_many :posts, through:  :groups_users
@@ -33,13 +33,4 @@
 |group_id|integer|null: false, foreign_key: true|
 ### Association
 - belongs_to :group
-- belongs_to :user
-
-## users_postsテーブル
-|Column|Type|Options|
-|------|----|-------|
-|post_id|integer|null: false, foreign_key: true|
-|users_id|integer|null: false, foreign_key: true|
-### Association
-- belongs_to :post
 - belongs_to :user
