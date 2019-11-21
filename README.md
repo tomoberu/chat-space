@@ -9,7 +9,7 @@
 ### アソシエーション
 - has_many :groups, through:  :groups_users
 - has_many :posts
-- has_many :groups
+- has_many :groups_users
 
 ## postsテーブル
 ## "余分な制約を削除"
@@ -36,7 +36,7 @@
 ### アソシエーション
 - has_many :users, through:  :groups_users
 - has_many :posts
-- has_many :groups
+- has_many :groups_users
 
 ## groups_usersテーブル
 |Column|Type|Options|
