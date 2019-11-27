@@ -12,15 +12,11 @@
   .header__leftcontents
     - current_user.groups.each do |group|
       .header__leftcontents__top
-        = link_to '#' do
+        = link_to group_messages_path(group) do
           .header__leftcontents__top1
             = group.name
           .header__leftcontents__top2
-            "まだメッセージはありません" 
-    .header__leftcontents__main
-      .header__leftcontents__main1
-        test 
-      .header__leftcontents__main2
-        "まだメッセージはありません" 
+            = group.show_last_message
+    
 
   
