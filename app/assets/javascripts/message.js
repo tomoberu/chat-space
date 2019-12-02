@@ -1,8 +1,20 @@
 $(function(){
       function buildHTML(message){
+
+        let image_html = "";
         if (message.image) {
+           image_html = `<img src=${message.image} ></img>`
+          //image変数に<img src=${message.image} >を代入するコードを記入する
+        }
+        // }else
+        // {
+        //   //let image = ""
+        //   //image変数に空欄を代入する
+        // }
+        
+        //if (message.image) {
           var html = 
-          `<div class="contents__top" data-message-id=${message.id}></div>
+          `<div class="contents__top" data-message-id=${message.id}>
             <div class="contents__top__name">
                   ${message.user_name}
             </div>
@@ -15,10 +27,10 @@ $(function(){
                 ${message.content}
               </p>
             </div>
-            <img src=${message.image} >
+              ${image_html}
           </div>`
           return html;
-        } else {
+       // } else {
           var html =
           `<div class="contents__top" data-message-id=${message.id}></div>
             <div class="contents__top__name">
@@ -35,9 +47,10 @@ $(function(){
              </div>
           </div>`
           return html;
-        };
+       // };
       }
-  $('.js-form').on('submit', function(e){
+  $('#new_message').on('submit', function(e){
+    console.log("ok")
     e.preventDefault()
     var formData = new FormData(this);
     var url = $(this).attr('action')
@@ -51,8 +64,8 @@ $(function(){
     })
     .done(function(data){
       var html = buildHTML(data);
-      $('.messages').append(html);
-      $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');         
+      $('.contents').append(html);
+      $('.contents').animate({scrollTop: $('.contents')[0].scrollHeight}, 'fast');         
       $('form')[0].reset();
     })
     .fail(function(){
