@@ -1,5 +1,4 @@
 $(function(){
-  console.log("1")
   var buildHTML2 = function(message) {
     let image_html = "";
         if (message.image) {
@@ -25,7 +24,6 @@ $(function(){
   };
       var reloadMessages = function() {
         last_message_id = $('.contents__center:last').data('id');
-        console.log(last_message_id)
         $.ajax({
           url: "api/messages/",
           type: 'GET',
@@ -33,7 +31,6 @@ $(function(){
           data: {id: last_message_id}
         })
         .done(function(messages) {
-          console.log(messages)
           var insertHTML = '';
           messages.forEach(function(messages){
             insertHTML += buildHTML2(messages)
