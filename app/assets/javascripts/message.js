@@ -1,42 +1,42 @@
 $(function(){
   var buildHTML = function(message) {
-    message__html = ""
+
     image__html = ""
     if (message.image) {
-      //data-idが反映されるようにしている
-      var html = `<div class="contents__center" data-message_id=` + message.id + `>` +
-        `<div class="contents__top">` +
-          `<div class="contents__top__name">` +
-            message.user_name +
-          `</div>` +
-          `<div class="contents__top__date">` +
-            message.created_at +
-          `</div>` +
-        `</div>` +
-        `<div class="contents__top__message">` +
-          `<p class="lower-message__content">` +
-            message.content +
-          `</p>` +
-          `<img src="` + message.image + `" class="lower-message__image" >` +
-        `</div>` +
-      `</div>`
+      var html = `
+        <div class="contents__center" data-message_id= message.id>
+        <div class="contents__top">
+          <div class="contents__top__name">
+            message.user_name 
+          </div>
+          <div class="contents__top__date">
+            message.created_at 
+          </div>
+        </div>
+        <div class="contents__top__message">
+          <p class="lower-message__content">
+            message.content
+          </p>
+          <img src="image__html" class="lower-message__image" >
+        </div>
+      </div>`
     } else {
-      //同様に、data-idが反映されるようにしている
-      var html = `<div class="contents__center" data-message_id=` + message.id + `>` +
-        `<div class="contents__top">` +
-          `<div class="contents__top">` +
-            message.user_name +
-          `</div>` +
-          `<div class="contents__top__date">` +
-            message.created_at +
-          `</div>` +
-        `</div>` +
-        `<div class="contents__top__message">` +
-          `<p class="lower-message__content">` +
-            message.content +
-          `</p>` +
-        `</div>` +
-      `</div>`
+      var html = `
+      <div class="contents__center" data-message_id= message.id >
+        <div class="contents__top">
+          <div class="contents__top">
+            message.user_name
+          </div>
+          <div class="contents__top__date">
+            message.created_at 
+          </div>
+        </div>
+        <div class="contents__top__message">
+          <p class="lower-message__content">
+            message.content
+          </p>
+        </div>
+      </div>`
     };
     return html;
   };
@@ -60,7 +60,7 @@ $(function(){
           $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');   
         })
         .fail(function() {
-          console.log('error');
+          alert('error');
         });
         setInterval(reloadMessages, 7000);
       };
