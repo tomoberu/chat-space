@@ -4,40 +4,22 @@ $(function(){
     image__html = ""
     if (message.image) {
       var html = `
-        <div class="contents__center" data-message_id= message.id>
+        <div class="contents__center" data-message_id= ${message.id}>
         <div class="contents__top">
           <div class="contents__top__name">
-            message.user_name 
+                ${message.user_name}
           </div>
           <div class="contents__top__date">
-            message.created_at 
+                ${message.created_at} 
           </div>
         </div>
         <div class="contents__top__message">
           <p class="lower-message__content">
-            message.content
+                ${message.content}
           </p>
           <img src="image__html" class="lower-message__image" >
         </div>
       </div>`
-    } else {
-      var html = `
-      <div class="contents__center" data-message_id= message.id >
-        <div class="contents__top">
-          <div class="contents__top">
-            message.user_name
-          </div>
-          <div class="contents__top__date">
-            message.created_at 
-          </div>
-        </div>
-        <div class="contents__top__message">
-          <p class="lower-message__content">
-            message.content
-          </p>
-        </div>
-      </div>`
-    };
     return html;
   };
       var reloadMessages = function() {
