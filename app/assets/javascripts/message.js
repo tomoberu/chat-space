@@ -1,74 +1,53 @@
 $(function(){
-  var buildHTML = function(message) {
-
-    image__html = ""
-    contents__html = ""
-    if (message.image) {
-      var html = `
-        <div class="contents__center" data-message_id= ${message.id}>
-        <div class="contents__top">
-          <div class="contents__top__name">
-                ${message.user_name}
-          </div>
-          <div class="contents__top__date">
-                ${message.created_at} 
-          </div>
-        </div>
-        <div class="contents__top__message">
-          <p class="lower-message__content">
-                ${contents__html}
-          </p>
-          <img src="image__html" class="lower-message__image" >
-        </div>
-      </div>`
-    return html;
-  };
-      var reloadMessages = function() {
-        last_message_id = $('.contents__center:last').data('id');
-        $.ajax({
-          url: $('.contents__center:last').data('id'),
-          type: 'get',
-          dataType: 'json',
-          data: {id: last_message_id}
-        })
-        .done(function(messages) {
-          //追加するHTMLの入れ物を作る
-          var insertHTML = '';
-          //配列messagesの中身一つ一つを取り出し、HTMLに変換したものを入れ物に足し合わせる
-          $.each(messages, function(i, message) {
-            insertHTML += buildHTML(message)
-          });
-          //メッセージが入ったHTMLに、入れ物ごと追加
-          $('.messages').append(insertHTML);
-          $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');   
-        })
-        .fail(function() {
-          alert('error');
-        });
-        setInterval(reloadMessages, 7000);
-      };
-      function buildHTML(message){
-        let image_html = "";
+  console.log("1")
+  var buildHTML2 = function(message) {
+    let image_html = "";
         if (message.image) {
            image_html = `<img src=${message.image} ></img>`
         }
-          var html = 
-          `<div class="contents__top" data-message-id=${message.id}>
+      var html = `
+        <div class="contents__center" data-id=${message.id}>
+        <div class="contents__top">
             <div class="contents__top__name">
                   ${message.user_name}
             </div>
             <div class="contents__top__date">
-            ${message.date}
+                  ${message.created_at}
             </div>
           </div>
           <div class="contents__top__message">
               <p class="lower-message__content">
                 ${message.content}
               </p>
-              ${image_html}
-          </div>`
-          return html;
-      }
+                ${image_html}
+          </div>`;
+    return html;
+  };
+      var reloadMessages = function() {
+        last_message_id = $('.contents__center:last').data('id');
+        console.log(last_message_id)
+        $.ajax({
+          url: "api/messages/",
+          type: 'GET',
+          dataType: 'json',
+          data: {id: last_message_id}
+        })
+        .done(function(messages) {
+          console.log(messages)
+          var insertHTML = '';
+          messages.forEach(function(messages){
+            insertHTML += buildHTML2(messages)
+          });
+          if (messages.length != 0){
+          $('.contents').append(insertHTML);
+          $('.contents').animate({scrollTop: $('.contents')[0].scrollHeight}, 'fast'); 
+          }  
+        })
+        .fail(function() {
+          alert('error');
+        });
+      };
+      setInterval(reloadMessages, 7000);
   $('#new_message').on('submit', function(e){
     e.preventDefault()
     var formData = new FormData(this);
@@ -82,7 +61,7 @@ $(function(){
       contentType: false
     })
     .done(function(data){
-      var html = buildHTML(data);
+      var html = buildHTML2(data);
       $('.contents').append(html);
       $('.contents').animate({scrollTop: $('.contents')[0].scrollHeight}, 'fast');         
       $('form')[0].reset();
@@ -92,4 +71,5 @@ $(function(){
     });
     return false;
   });
+ 
 });
