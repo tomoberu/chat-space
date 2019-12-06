@@ -41,33 +41,34 @@
     padding-top: 20px;
     a {
       color: white;
+      text-decoration: none;
     }
-
-  &__top {
-    padding-left: 20px;
-    font-weight: bold;
-  }
-  &__top1 {
-    font-size: 15px;
-  }
-  &__top2 {
-    font-size: 11px;
-  }
-  &__main {
-    background-color: #2f3e51;
-    padding-top: 40px;
-    margin-left: 20px;
-    font-weight: bold;
-    a {
-      color: white;
+    &__top {
+      padding-left: 20px;
+      font-weight: bold;
+      &--top1 {
+        font-size: 15px;
+        list-style: none;
+      }
+      &--top2 {
+        font-size: 11px;
+      }
     }
-  }
-  &__main1 {
-    font-size: 15px;
-  }
-  &__main2 {
-    font-size: 11px;
-  }
+    &__main {
+      background-color: #2f3e51;
+      padding-top: 40px;
+      margin-left: 20px;
+      font-weight: bold;
+      a {
+        color: white;
+      }
+    }
+    &__main1 {
+      font-size: 15px;
+    }
+    &__main2 {
+      font-size: 11px;
+    }
 }
 
 .main {
@@ -80,6 +81,10 @@
     height: 100px;
     padding: 0 40px;
     overflow: scroll;
+    a {
+      text-decoration: none;
+    }
+    
     &__title {
       display:inline-block;
       font-size: 20px;  
@@ -104,6 +109,9 @@
       color: #38aef0;
       position: absolute;
       right: 40px;
+      a {
+        text-decoration: none;
+      }
     }
   }
   .contents {
@@ -138,7 +146,7 @@
       box-sizing: border-box;
       .message_content {
         height: 50px;
-        width: 660px;
+        width: 750px;
         padding: 0 40px 0 10px;
         color: #434a54;
         border-style: none;
