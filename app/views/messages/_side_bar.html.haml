@@ -13,10 +13,10 @@
     - current_user.groups.each do |group|
       .header__leftcontents__top
         = link_to group_messages_path(group) do
-          .header__leftcontents__top--top1
-            = group.name
-          .header__leftcontents__top--top2
-            = group.show_last_message
+        .header__leftcontents__top--top1
+          = group.name
+        .header__leftcontents__top--top2
+          = group.show_last_message
     
 
   
